@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4AAA41341F3A3C88002A78DE /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA41331F3A3C88002A78DE /* CollectionViewCell.swift */; };
+		4AAA41361F3A3D79002A78DE /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA41351F3A3D79002A78DE /* CollectionViewController.swift */; };
+		4ADDB7E31F58C8B000936B87 /* FlickrClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADDB7E21F58C8B000936B87 /* FlickrClient.swift */; };
+		4ADDB7E51F58C8BC00936B87 /* FlickrConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADDB7E41F58C8BC00936B87 /* FlickrConstants.swift */; };
+		4ADDB7E71F58C8CB00936B87 /* FlickrConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADDB7E61F58C8CB00936B87 /* FlickrConvenience.swift */; };
 		4AFAA8B71F13FF38001D6B25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFAA8B61F13FF38001D6B25 /* AppDelegate.swift */; };
-		4AFAA8B91F13FF38001D6B25 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFAA8B81F13FF38001D6B25 /* ViewController.swift */; };
+		4AFAA8B91F13FF38001D6B25 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFAA8B81F13FF38001D6B25 /* MapViewController.swift */; };
 		4AFAA8BC1F13FF38001D6B25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AFAA8BA1F13FF38001D6B25 /* Main.storyboard */; };
 		4AFAA8BE1F13FF38001D6B25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AFAA8BD1F13FF38001D6B25 /* Assets.xcassets */; };
 		4AFAA8C11F13FF38001D6B25 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AFAA8BF1F13FF38001D6B25 /* LaunchScreen.storyboard */; };
@@ -34,9 +39,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4AAA41331F3A3C88002A78DE /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionViewCell.swift; path = ../CollectionViewCell.swift; sourceTree = "<group>"; };
+		4AAA41351F3A3D79002A78DE /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionViewController.swift; path = ../CollectionViewController.swift; sourceTree = "<group>"; };
+		4ADDB7E21F58C8B000936B87 /* FlickrClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrClient.swift; sourceTree = "<group>"; };
+		4ADDB7E41F58C8BC00936B87 /* FlickrConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrConstants.swift; sourceTree = "<group>"; };
+		4ADDB7E61F58C8CB00936B87 /* FlickrConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrConvenience.swift; sourceTree = "<group>"; };
 		4AFAA8B31F13FF38001D6B25 /* Virtual Tourist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Virtual Tourist.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AFAA8B61F13FF38001D6B25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4AFAA8B81F13FF38001D6B25 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4AFAA8B81F13FF38001D6B25 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		4AFAA8BB1F13FF38001D6B25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4AFAA8BD1F13FF38001D6B25 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4AFAA8C01F13FF38001D6B25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -74,9 +84,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4ADDB7E11F58C88E00936B87 /* Flickr */ = {
+			isa = PBXGroup;
+			children = (
+				4ADDB7E21F58C8B000936B87 /* FlickrClient.swift */,
+				4ADDB7E41F58C8BC00936B87 /* FlickrConstants.swift */,
+				4ADDB7E61F58C8CB00936B87 /* FlickrConvenience.swift */,
+			);
+			name = Flickr;
+			sourceTree = "<group>";
+		};
 		4AFAA8AA1F13FF38001D6B25 = {
 			isa = PBXGroup;
 			children = (
+				4ADDB7E11F58C88E00936B87 /* Flickr */,
 				4AFAA8B51F13FF38001D6B25 /* Virtual Tourist */,
 				4AFAA8CA1F13FF39001D6B25 /* Virtual TouristTests */,
 				4AFAA8D51F13FF39001D6B25 /* Virtual TouristUITests */,
@@ -98,7 +119,9 @@
 			isa = PBXGroup;
 			children = (
 				4AFAA8B61F13FF38001D6B25 /* AppDelegate.swift */,
-				4AFAA8B81F13FF38001D6B25 /* ViewController.swift */,
+				4AFAA8B81F13FF38001D6B25 /* MapViewController.swift */,
+				4AAA41351F3A3D79002A78DE /* CollectionViewController.swift */,
+				4AAA41331F3A3C88002A78DE /* CollectionViewCell.swift */,
 				4AFAA8BA1F13FF38001D6B25 /* Main.storyboard */,
 				4AFAA8BD1F13FF38001D6B25 /* Assets.xcassets */,
 				4AFAA8BF1F13FF38001D6B25 /* LaunchScreen.storyboard */,
@@ -262,8 +285,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4AFAA8B91F13FF38001D6B25 /* ViewController.swift in Sources */,
+				4ADDB7E71F58C8CB00936B87 /* FlickrConvenience.swift in Sources */,
+				4AAA41361F3A3D79002A78DE /* CollectionViewController.swift in Sources */,
+				4ADDB7E31F58C8B000936B87 /* FlickrClient.swift in Sources */,
+				4AFAA8B91F13FF38001D6B25 /* MapViewController.swift in Sources */,
 				4AFAA8B71F13FF38001D6B25 /* AppDelegate.swift in Sources */,
+				4ADDB7E51F58C8BC00936B87 /* FlickrConstants.swift in Sources */,
+				4AAA41341F3A3C88002A78DE /* CollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,6 +542,7 @@
 				4AFAA8DD1F13FF39001D6B25 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4AFAA8DE1F13FF39001D6B25 /* Build configuration list for PBXNativeTarget "Virtual TouristTests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +551,7 @@
 				4AFAA8E01F13FF39001D6B25 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4AFAA8E11F13FF39001D6B25 /* Build configuration list for PBXNativeTarget "Virtual TouristUITests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +560,7 @@
 				4AFAA8E31F13FF39001D6B25 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
