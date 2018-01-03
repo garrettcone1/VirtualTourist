@@ -13,46 +13,51 @@ extension FlickrClient {
     
     struct Constants {
         
-        // API Key
-        static let RestAPIKey: String = "c0f2426a708d22d2e8b92f07625fdfcd"
-        
-        // Secret Key
-        static let SecretKey: String = "aa6d38b15d64a18c"
-        
-        // URLs
-        static let BaseURL: String = "http://api.flickr.com/services/rest/"
-        static let BaseURLSecure: String = "https://api.flickr.com/services/rest/"
-        
-        static let Format: String = "json"
-        static let NoJsonCallback: String = "1"
-        static let Extras: String = "url_m"
-        static let PerPage: String = "20"
-    }
+        struct Flickr {
+            
+            static let APIScheme = "https://"
+            static let APIHost = "api.flickr.com"
+            static let APIPath = "/services/rest/"
+            
+            static let SearchLatRange = (-90.0, 90.0)
+            static let SearchLongRange = (-180.0, 180.0)
+            static let BBoxHalfWidth = 0.5
+            static let BBoxHalfHeight = 0.5
+        }
     
-    struct Methods {
+        struct FlickrParameterKeys {
         
-        // Search photos by location
-        static let PhotosSearch: String = "flickr.photos.search"
-    }
+            static let ApiKey = "api_key"
+            static let Method = "method"
+            static let Format = "format"
+            static let Latitude = "lat"
+            static let Longitude = "lon"
+            static let NoJSONCallBack = "nojsoncallback"
+            static let BBox = "bbox"
+            static let PerPage = "per_page"
+            static let Page = "page"
+            static let Extras = "extras"
+        }
     
-    struct ParameterKeys {
+        struct FlickrParameterValues {
+            
+            static let APIKey = "c0f2426a708d22d2e8b92f07625fdfcd"
+            static let SecretKey = "aa6d38b15d64a18c"
+            
+            static let SearchMethod = "flickr.photos.search"
+            static let JSONFormat = "json"
+            static let MediumURL = "url_m"
+            static let PerPageLimit = 21
+            
+        }
         
-        static let ApiKey = "api_key"
+        struct JSONResponseKeys {
         
-        static let Method = "method"
-        static let Format = "format"
-        static let Latitude = "lat"
-        static let Longitude = "lon"
-        static let PerPage = "per_page"
-        static let Extras = "extras"
+            static let Status = "stat"
+            static let Photo = "photo"
+            static let Photos = "photos"
+            static let Url = "url_m"
+            static let Title = "title"
+        }
     }
-    
-    struct JSONResponseKeys {
-        
-        static let Photo = "photo"
-        static let Photos = "photos"
-        static let Url = "url_m"
-        static let ID = "id"
-    }
-    
 }
