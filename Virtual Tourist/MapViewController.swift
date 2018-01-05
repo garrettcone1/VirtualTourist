@@ -15,6 +15,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
 
     @IBOutlet weak var mapView: MKMapView!
     
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -33,6 +34,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
         //controller.setMapViewAnnotation(view.annotation!)
         self.present(controller, animated: true, completion: nil)
     }
+    
+    @IBAction func editButton(_ sender: Any) {
+        
+        
+        
+    }
+    
 }
 
 

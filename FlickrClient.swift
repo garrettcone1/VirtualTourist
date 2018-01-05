@@ -81,8 +81,6 @@ class FlickrClient: NSObject {
         task.resume()
     }
     
-    
-    
     class func sharedInstance() -> FlickrClient {
         struct Singleton {
             static var sharedInstance = FlickrClient()

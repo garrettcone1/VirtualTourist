@@ -81,3 +81,26 @@ struct CoreDataStack {
     }
     
 }
+
+extension CoreDataStack {
+    
+    func save() {
+        
+        /* We call this synchronously, but it's a very fast
+         operation (it doesn't hit the disk). We need to know when it ends
+         so we can call the next save (on the persisting context). This last
+         one might take some time and is done in a background queue
+         */
+        
+        context.performAndWait() {
+            
+            if self.context.hasChanges {
+                do {
+                    try self.context.save()
+                } catch {
+                    fatalError("Error while saving persisting context: \(error)")
+                }
+            }
+        }
+    }
+}
