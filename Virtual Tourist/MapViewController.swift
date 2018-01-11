@@ -15,14 +15,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
 
     @IBOutlet weak var mapView: MKMapView!
     
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         self.mapView.delegate = self
     }
 
-    func addAnnotation(_ gestureRecognizer: UIGestureRecognizer) {
+    func addAnnotation(_ gestureRecognizer: UILongPressGestureRecognizer) {
         
         
     }
@@ -37,10 +36,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     
     @IBAction func editButton(_ sender: Any) {
         
-        
-        
     }
     
 }
-
-

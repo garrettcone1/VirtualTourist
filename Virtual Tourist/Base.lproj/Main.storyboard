@@ -62,7 +62,7 @@
         <!--Collection View Controller-->
         <scene sceneID="qGV-QO-j42">
             <objects>
-                <viewController storyboardIdentifier="CollectionController" id="YUI-3o-Rqo" customClass="CollectionViewController" customModule="Virtual_Tourist" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CollectionVC" id="YUI-3o-Rqo" customClass="CollectionViewController" customModule="Virtual_Tourist" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="47T-jm-Qcm"/>
                         <viewControllerLayoutGuide type="bottom" id="5Q0-xs-pnw"/>
@@ -75,7 +75,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QWE-R8-OoG">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QWE-R8-OoG" userLabel="Photo Collection View">
                                 <rect key="frame" x="0.0" y="208" width="375" height="459"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -86,21 +86,35 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoReuseID" id="Ssh-hM-dcB" customClass="CollectionViewCell" customModule="Virtual_Tourist" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoReuseID" id="Ssh-hM-dcB" userLabel="CollectionViewCell" customClass="CollectionViewCell" customModule="Virtual_Tourist" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="115" height="116"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="115" height="116"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v8B-ZJ-AMl">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v8B-ZJ-AMl" userLabel="Photo Image View">
                                                     <rect key="frame" x="0.0" y="0.0" width="115" height="116"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9zw-mO-UqL" userLabel="Place Holder View">
+                                                    <rect key="frame" x="0.0" y="0.0" width="115" height="116"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="9qD-84-zuE">
+                                                            <rect key="frame" x="47" y="48" width="20" height="20"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </activityIndicatorView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
                                             </subviews>
                                         </view>
                                         <connections>
+                                            <outlet property="activityIndicator" destination="9qD-84-zuE" id="UeW-6t-F6i"/>
                                             <outlet property="photo" destination="v8B-ZJ-AMl" id="dfx-v5-ld3"/>
+                                            <outlet property="photoImageView" destination="v8B-ZJ-AMl" id="L7C-Z4-bJT"/>
+                                            <outlet property="placeHolderView" destination="9zw-mO-UqL" id="scQ-Rm-DpC"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -108,13 +122,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="EXm-xA-ghf">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="ROU-pF-RL0"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="Vfs-J3-kt5"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WCI-Wv-hXV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2121" y="140"/>
+            <point key="canvasLocation" x="2120.8000000000002" y="139.880059970015"/>
         </scene>
     </scenes>
 </document>

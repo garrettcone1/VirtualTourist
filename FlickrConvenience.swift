@@ -11,8 +11,22 @@ import UIKit
 
 extension FlickrClient {
     
-    
-    
-    
+    func getPhotosForPin(pin: Pin) {
+        
+        performUIUpdatesOnMain {
+            FlickrClient.sharedInstance().taskForGETMethod(latitude: pin.latitude, longitude: pin.longitude) { (success, data, error) in
+                
+                if let data = data {
+                    
+                    for item in data {
+                        
+                        let imageUrl = item[Constants.FlickrParameterValues.MediumURL] as! String
+                        
+                        //let photo = Photo(imageData: nil, imageUrl: imageUrl, context:)
+                    }
+                }
+            }
+        }
+    }
     
 }
