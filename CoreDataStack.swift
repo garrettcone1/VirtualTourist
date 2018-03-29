@@ -70,7 +70,7 @@ struct CoreDataStack {
         do {
             try addStoreCoordinator(NSSQLiteStoreType, configuration: nil, storeURL: dbURL, options: options as [NSObject: AnyObject]?)
         } catch {
-            print("Unable toa dd store at \(dbURL)")
+            print("Unable to add store at \(dbURL)")
         }
         
     }
@@ -80,6 +80,34 @@ struct CoreDataStack {
         try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: dbURL, options: nil)
     }
     
+}
+
+internal extension CoreDataStack {
+    
+    func deleteData() throws {
+        // Delete all objects in the database to leave empty tables
+        try coordinator.destroyPersistentStore(at: dbURL, ofType: NSSQLiteStoreType, options: nil)
+        try addStoreCoordinator(NSSQLiteStoreType, configuration: nil, storeURL: dbURL, options: nil)
+    }
+}
+
+extension CoreDataStack {
+    
+    typealias Batch = (_ workingContext: NSManagedObjectContext) -> ()
+    
+    func performBackgroundBatchOperation(_ batch: @escaping Batch) {
+        
+        backgroundContext.perform() {
+            batch(self.backgroundContext)
+            
+            // Save this to the parent context
+            do {
+                try self.backgroundContext.save()
+            } catch {
+                fatalError("Error while saving backgroundContext: \(error)")
+            }
+        }
+    }
 }
 
 extension CoreDataStack {
@@ -98,7 +126,18 @@ extension CoreDataStack {
                 do {
                     try self.context.save()
                 } catch {
-                    fatalError("Error while saving persisting context: \(error)")
+                    fatalError("Error while saving main context: \(error)")
+                }
+                
+                // Save in the background
+                self.persistingContext.perform() {
+                    
+                    do {
+                        try self.persistingContext.save()
+                    } catch {
+                        
+                        fatalError("Error while saving persisting context: \(error)")
+                    }
                 }
             }
         }

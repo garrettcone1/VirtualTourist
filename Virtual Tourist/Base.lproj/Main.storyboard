@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G18013" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VzG-8U-iIX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G19009" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VzG-8U-iIX">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -21,12 +21,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="cGp-SL-JWK">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="cGp-SL-JWK">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="kLA-e8-7Ch" appends="YES" id="BiJ-Mf-heA"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="cGp-SL-JWK" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="HQ7-sE-vMQ"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="cGp-SL-JWK" secondAttribute="bottom" id="ola-5w-fxL"/>
+                            <constraint firstItem="cGp-SL-JWK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="wIb-pO-c9P"/>
+                            <constraint firstAttribute="trailing" secondItem="cGp-SL-JWK" secondAttribute="trailing" id="wKx-RX-kDc"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Virtual Tourist" id="6lI-7E-qdD">
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="Odh-g2-feK">
@@ -40,6 +48,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="kLA-e8-7Ch">
+                    <connections>
+                        <action selector="addTappedPin:" destination="BYZ-38-t0r" id="rLG-vd-B3c"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1137" y="140"/>
         </scene>
@@ -71,13 +84,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="pyQ-Dy-atp">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="pyQ-Dy-atp">
                                 <rect key="frame" x="0.0" y="64" width="375" height="150"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QWE-R8-OoG" userLabel="Photo Collection View">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QWE-R8-OoG" userLabel="Photo Collection View">
                                 <rect key="frame" x="0.0" y="208" width="375" height="459"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="CWl-k1-6fK">
                                     <size key="itemSize" width="115" height="116"/>
@@ -121,6 +132,16 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5Q0-xs-pnw" firstAttribute="top" secondItem="pyQ-Dy-atp" secondAttribute="bottom" constant="453" id="95Z-gl-3zZ"/>
+                            <constraint firstItem="5Q0-xs-pnw" firstAttribute="top" secondItem="QWE-R8-OoG" secondAttribute="bottom" id="9k9-9D-pTw"/>
+                            <constraint firstItem="pyQ-Dy-atp" firstAttribute="leading" secondItem="Ftf-VP-Qq8" secondAttribute="leading" id="Jyx-3P-Svr"/>
+                            <constraint firstItem="pyQ-Dy-atp" firstAttribute="top" secondItem="47T-jm-Qcm" secondAttribute="bottom" constant="44" id="L0q-L5-L3U"/>
+                            <constraint firstItem="QWE-R8-OoG" firstAttribute="leading" secondItem="Ftf-VP-Qq8" secondAttribute="leading" id="OeB-II-jIM"/>
+                            <constraint firstAttribute="trailing" secondItem="QWE-R8-OoG" secondAttribute="trailing" id="VZC-mJ-vQL"/>
+                            <constraint firstItem="QWE-R8-OoG" firstAttribute="top" secondItem="47T-jm-Qcm" secondAttribute="bottom" constant="188" id="iQh-h5-NtY"/>
+                            <constraint firstAttribute="trailing" secondItem="pyQ-Dy-atp" secondAttribute="trailing" id="oL8-ib-yY2"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Vfs-J3-kt5"/>
                 </viewController>

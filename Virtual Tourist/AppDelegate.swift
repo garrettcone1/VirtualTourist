@@ -24,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
             UserDefaults.standard.set(0, forKey: "latitudeKey")
             UserDefaults.standard.set(0, forKey: "longitudeKey")
+            UserDefaults.standard.set(0, forKey: "latDeltaKey")
+            UserDefaults.standard.set(0, forKey: "longDeltaKey")
             UserDefaults.standard.synchronize()
         }
     }
@@ -44,6 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        coreDataStack?.save()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {

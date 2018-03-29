@@ -13,6 +13,9 @@ extension FlickrClient {
     
     func getPhotosForPin(pin: Pin) {
         
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let coreDataStack = appDelegate.coreDataStack
+        
         performUIUpdatesOnMain {
             FlickrClient.sharedInstance().taskForGETMethod(latitude: pin.latitude, longitude: pin.longitude) { (success, data, error) in
                 
@@ -22,9 +25,16 @@ extension FlickrClient {
                         
                         let imageUrl = item[Constants.FlickrParameterValues.MediumURL] as! String
                         
-                        //let photo = Photo(imageData: nil, imageUrl: imageUrl, context:)
+                        let photo = Photo(imageData: nil, imageURL: imageUrl, context: (coreDataStack?.context)!)
+                        
+                        pin.addToPhotos(photo)
+                        
+                        coreDataStack?.save()
+                        
                     }
                 }
+                
+                pin.isDownloaded = true
             }
         }
     }

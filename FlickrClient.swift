@@ -14,10 +14,6 @@ class FlickrClient: NSObject {
     // Shared Session
     var session = URLSession.shared
     
-    // Initializer
-    override init() {
-        super.init()
-    }
     
     func taskForGETMethod(latitude: Double, longitude: Double, _ completionHandlerForGET: @escaping (_ success: Bool, _ data: [[String: AnyObject]]?, _ error: String?) -> Void) {
         
@@ -35,7 +31,10 @@ class FlickrClient: NSObject {
                                 Constants.FlickrParameterKeys.Page: randomPageNumber] as [String : Any]
         
         // Create URL from Flickr Constants
-        let urlString = Constants.Flickr.APIScheme + Constants.Flickr.APIHost + Constants.Flickr.APIPath + escapedParameters(methodParameters as [String: AnyObject])
+        let urlString = Constants.Flickr.APIScheme +
+            Constants.Flickr.APIHost +
+            Constants.Flickr.APIPath +
+            escapedParameters(methodParameters as [String: AnyObject])
         
         let url = URL(string: urlString)!
         
@@ -45,21 +44,28 @@ class FlickrClient: NSObject {
         // Create task and make request
         let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
         
+            func sendError(error: String) {
+                
+                print(error)
+                let userInfo = [NSLocalizedDescriptionKey: error]
+                completionHandlerForGET(false, nil, String(describing: NSError(domain: "taskForGETMethod", code: 1, userInfo: userInfo)))
+            }
+            
             // Check if there was an error
             guard error == nil else {
-                print("There was an error with your request: \(error)")
+                sendError(error: "There was an error with your request: \(error?.localizedDescription)")
                 return
             }
             
             // Check to see if we got a successful 2xx response
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
-                print("Your request returned a status code other than 2xx!: \(response)")
+                sendError(error: "Your request returned a status code other than 2xx!: \(response)")
                 return
             }
             
             // Check to see if there was any data returned
             guard let data = data else {
-                print("No data was returned by the request!")
+                sendError(error: "No data was returned by the request!")
                 return
             }
             
@@ -81,6 +87,24 @@ class FlickrClient: NSObject {
         task.resume()
     }
     
+    public func loadURLPhoto(imagePath: String, completionHandler: @escaping (_ imageData: Data?, _ error: String?) -> Void) {
+        
+        let session = URLSession.shared
+        let imageURL = URL(string: imagePath)
+        let request = URLRequest(url: imageURL! as URL)
+        
+        let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
+            
+            guard error == nil else {
+                completionHandler(nil, "Error downloading image: \(error)")
+                return
+            }
+            completionHandler(data, nil)
+        }
+        
+        task.resume()
+    }
+    
     class func sharedInstance() -> FlickrClient {
         struct Singleton {
             static var sharedInstance = FlickrClient()
@@ -94,17 +118,21 @@ extension FlickrClient {
     
     public func escapedParameters(_ parameters: [String: AnyObject]) -> String {
         
-        var keyValuePairs = [String]()
+        if parameters.isEmpty {
+            return ""
+        } else {
+            var keyValuePairs = [String]()
         
-        for (key, value) in parameters {
+            for (key, value) in parameters {
             
-            let stringValue = "\(value)"
-            let escapedValue = stringValue.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                let stringValue = "\(value)"
+                let escapedValue = stringValue.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
             
-            keyValuePairs.append(key + "=" + "\(escapedValue!)")
+                keyValuePairs.append(key + "=" + "\(escapedValue!)")
+            }
+        
+            return "?\(keyValuePairs.joined(separator: "&"))"
         }
-        
-        return "?\(keyValuePairs.joined(separator: "&"))"
     }
     
     public func createBBox(latitude: Double, longitude: Double) -> String {

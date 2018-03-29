@@ -12,5 +12,7 @@ import MapKit
 
 class CollectionViewController: UICollectionViewController {
     
+    var pin: Pin!
+    
     
 }
