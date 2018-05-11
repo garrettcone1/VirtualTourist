@@ -25,18 +25,17 @@ extension FlickrClient {
                         
                         let imageUrl = item[Constants.FlickrParameterValues.MediumURL] as! String
                         
-                        let photo = Photo(imageData: nil, imageURL: imageUrl, context: (coreDataStack?.context)!)
+                        let photo = Photo(imageData: nil, imageURL: imageUrl, context: coreDataStack.context)
                         
                         pin.addToPhotos(photo)
                         
-                        coreDataStack?.save()
+                        coreDataStack.save()
                         
                     }
                 }
                 
-                pin.isDownloaded = true
+                pin.isDownloaded = false
             }
         }
     }
-    
 }

@@ -15,6 +15,8 @@ class MapViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
     
+    var coreDataController: CoreDataStack!
+    
     lazy var fetchedResultsController: NSFetchedResultsController <NSFetchRequestResult> = {
         
         // Get the stack
@@ -27,7 +29,7 @@ class MapViewController: UIViewController {
                                         NSSortDescriptor(key: "longitude", ascending: true)]
         
         // Create the FetchedResultsController
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: (stack?.context)!, sectionNameKeyPath: nil, cacheName: nil)
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: stack.context, sectionNameKeyPath: nil, cacheName: nil)
         
         return fetchedResultsController
     }()
@@ -63,21 +65,30 @@ class MapViewController: UIViewController {
             
             let delegate = UIApplication.shared.delegate as! AppDelegate
             let coreDataStack = delegate.coreDataStack
+            //let backgroundContext = coreDataController.backgroundContext
             
-            let pin = Pin(lat: coordinate.latitude, long: coordinate.longitude, isDownloaded: false, context: (coreDataStack?.context)!)
+            let pin = Pin(lat: coordinate.latitude, long: coordinate.longitude, isDownloaded: false, context: coreDataStack.context)
+            //let objectIdPin = pin.objectID
             
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = coordinate
-            
-            // Add the pin to the map
-            mapView.addAnnotation(annotation)
-            
-            if !pin.isDownloaded {
+            //backgroundContext.perform {
                 
-                FlickrClient.sharedInstance().getPhotosForPin(pin: pin)
-            }
-            
-            coreDataStack?.save()
+                //let backgroundPin = backgroundContext.object(with: objectIdPin) as! Pin
+                
+                //print(backgroundPin.photos!)
+                
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = coordinate
+                
+                // Add the pin to the map
+                self.mapView.addAnnotation(annotation)
+                
+                if !pin.isDownloaded {
+                    
+                    FlickrClient.sharedInstance().getPhotosForPin(pin: pin)
+                }
+                
+                coreDataStack.save()
+            //}
         }
     }
     

@@ -46,13 +46,16 @@ struct CoreDataStack {
         // Create a context and add connect it to the coordinator
         persistingContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         persistingContext.persistentStoreCoordinator = coordinator
+        assert(true)
         
         context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         context.parent = persistingContext
+        assert(true)
         
         // Create a background context child of main context
         backgroundContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         backgroundContext.parent = context
+        assert(true)
         
         // Add a SQLite store located in the documents folder
         let fm = FileManager.default
@@ -90,7 +93,7 @@ internal extension CoreDataStack {
         try addStoreCoordinator(NSSQLiteStoreType, configuration: nil, storeURL: dbURL, options: nil)
     }
 }
-
+/*
 extension CoreDataStack {
     
     typealias Batch = (_ workingContext: NSManagedObjectContext) -> ()
@@ -108,7 +111,7 @@ extension CoreDataStack {
             }
         }
     }
-}
+}*/
 
 extension CoreDataStack {
     
