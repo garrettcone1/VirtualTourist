@@ -9,15 +9,14 @@
 import Foundation
 import UIKit
 
-class FlickrClient: NSObject {
+class FlickrClient {
     
     // Shared Session
-    var session = URLSession.shared
-    
+    let session = URLSession.shared
     
     func taskForGETMethod(latitude: Double, longitude: Double, _ completionHandlerForGET: @escaping (_ success: Bool, _ data: [[String: AnyObject]]?, _ error: String?) -> Void) {
         
-        let randomPageNumber = UInt32(arc4random_uniform(50) + 1)
+        let randomPageNumber = UInt64(arc4random_uniform(50) + 1)
         
         let methodParameters = [Constants.FlickrParameterKeys.Method: Constants.FlickrParameterValues.SearchMethod,
                                 Constants.FlickrParameterKeys.ApiKey: Constants.FlickrParameterValues.APIKey,
@@ -70,9 +69,9 @@ class FlickrClient: NSObject {
             }
             
             // Parse the JSON data
-            var parsedResult: AnyObject!
+            var parsedResult: [String: AnyObject]! = nil
             do {
-                parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as AnyObject
+                parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: AnyObject]
             } catch {
                 print("Could not parse JSON data")
             }

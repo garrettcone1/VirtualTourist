@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G19009" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VzG-8U-iIX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G20015" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VzG-8U-iIX">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -85,10 +85,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="pyQ-Dy-atp">
-                                <rect key="frame" x="0.0" y="64" width="375" height="150"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="214"/>
                             </mapView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QWE-R8-OoG" userLabel="Photo Collection View">
-                                <rect key="frame" x="0.0" y="208" width="375" height="459"/>
+                                <rect key="frame" x="0.0" y="208" width="375" height="392"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="CWl-k1-6fK">
                                     <size key="itemSize" width="115" height="116"/>
@@ -97,7 +97,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoReuseID" id="Ssh-hM-dcB" userLabel="CollectionViewCell" customClass="CollectionViewCell" customModule="Virtual_Tourist" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCell" id="Ssh-hM-dcB" userLabel="CollectionViewCell" customClass="CollectionViewCell" customModule="Virtual_Tourist" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="115" height="116"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -130,24 +130,39 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C6X-2x-t9U">
+                                <rect key="frame" x="0.0" y="608" width="375" height="59"/>
+                                <state key="normal" title="New Collection"/>
+                                <connections>
+                                    <action selector="newCollectionPressed:" destination="YUI-3o-Rqo" eventType="touchUpInside" id="WKw-eN-PyJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="5Q0-xs-pnw" firstAttribute="top" secondItem="pyQ-Dy-atp" secondAttribute="bottom" constant="453" id="95Z-gl-3zZ"/>
-                            <constraint firstItem="5Q0-xs-pnw" firstAttribute="top" secondItem="QWE-R8-OoG" secondAttribute="bottom" id="9k9-9D-pTw"/>
+                            <constraint firstItem="5Q0-xs-pnw" firstAttribute="top" secondItem="QWE-R8-OoG" secondAttribute="bottom" constant="67" id="9k9-9D-pTw"/>
+                            <constraint firstItem="C6X-2x-t9U" firstAttribute="top" secondItem="QWE-R8-OoG" secondAttribute="bottom" constant="8" id="Akz-Ua-3lB"/>
                             <constraint firstItem="pyQ-Dy-atp" firstAttribute="leading" secondItem="Ftf-VP-Qq8" secondAttribute="leading" id="Jyx-3P-Svr"/>
-                            <constraint firstItem="pyQ-Dy-atp" firstAttribute="top" secondItem="47T-jm-Qcm" secondAttribute="bottom" constant="44" id="L0q-L5-L3U"/>
+                            <constraint firstItem="pyQ-Dy-atp" firstAttribute="top" secondItem="47T-jm-Qcm" secondAttribute="bottom" constant="-20" id="L0q-L5-L3U"/>
                             <constraint firstItem="QWE-R8-OoG" firstAttribute="leading" secondItem="Ftf-VP-Qq8" secondAttribute="leading" id="OeB-II-jIM"/>
+                            <constraint firstItem="5Q0-xs-pnw" firstAttribute="top" secondItem="C6X-2x-t9U" secondAttribute="bottom" id="V3P-Tt-dq4"/>
                             <constraint firstAttribute="trailing" secondItem="QWE-R8-OoG" secondAttribute="trailing" id="VZC-mJ-vQL"/>
                             <constraint firstItem="QWE-R8-OoG" firstAttribute="top" secondItem="47T-jm-Qcm" secondAttribute="bottom" constant="188" id="iQh-h5-NtY"/>
+                            <constraint firstItem="C6X-2x-t9U" firstAttribute="leading" secondItem="Ftf-VP-Qq8" secondAttribute="leading" id="k9B-C0-I7D"/>
                             <constraint firstAttribute="trailing" secondItem="pyQ-Dy-atp" secondAttribute="trailing" id="oL8-ib-yY2"/>
+                            <constraint firstAttribute="trailing" secondItem="C6X-2x-t9U" secondAttribute="trailing" id="ubi-pb-3oL"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Vfs-J3-kt5"/>
+                    <connections>
+                        <outlet property="collectionView" destination="QWE-R8-OoG" id="vBL-6C-37b"/>
+                        <outlet property="newCollectionButton" destination="C6X-2x-t9U" id="PMw-w9-ENm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WCI-Wv-hXV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2120.8000000000002" y="139.880059970015"/>
+            <point key="canvasLocation" x="1980" y="139.880059970015"/>
         </scene>
     </scenes>
 </document>

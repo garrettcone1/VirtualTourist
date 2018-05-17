@@ -142,8 +142,8 @@ extension MapViewController: MKMapViewDelegate {
         
         mapView.deselectAnnotation(view.annotation, animated: false)
         
-        let latitudePredicate = NSPredicate(format: "latitude == %f", (view.annotation?.coordinate.latitude)!)
-        let longitudePredicate = NSPredicate(format: "longitude == %f", (view.annotation?.coordinate.longitude)!)
+        let latitudePredicate = NSPredicate(format: "latitude == %lf", (view.annotation?.coordinate.latitude)!)
+        let longitudePredicate = NSPredicate(format: "longitude == %lf", (view.annotation?.coordinate.longitude)!)
         let request = NSCompoundPredicate(type: .and, subpredicates: [latitudePredicate, longitudePredicate])
         
         fetchedResultsController.fetchRequest.predicate = request

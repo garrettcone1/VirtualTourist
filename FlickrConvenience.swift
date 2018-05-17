@@ -34,7 +34,8 @@ extension FlickrClient {
                     }
                 }
                 
-                pin.isDownloaded = false
+                pin.isDownloaded = true
+                
             }
         }
     }

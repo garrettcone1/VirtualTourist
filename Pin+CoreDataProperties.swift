@@ -25,15 +25,15 @@ extension Pin {
 
 extension Pin {
     
-    @objc(addPhotosObject: )
+    @objc(addPhotosObject:)
     @NSManaged public func addToPhotos(_ value: Photo)
     
-    @objc(removePhotosObject: )
+    @objc(removePhotosObject:)
     @NSManaged public func removeFromPhotos(_ value: Photo)
     
-    @objc(addPhotos: )
+    @objc(addPhotos:)
     @NSManaged public func addToPhotos(_ values: NSSet)
     
-    @objc(removePhotos: )
+    @objc(removePhotos:)
     @NSManaged public func removeFromPhotos(_ values: NSSet)
 }

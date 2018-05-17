@@ -93,7 +93,7 @@ internal extension CoreDataStack {
         try addStoreCoordinator(NSSQLiteStoreType, configuration: nil, storeURL: dbURL, options: nil)
     }
 }
-/*
+
 extension CoreDataStack {
     
     typealias Batch = (_ workingContext: NSManagedObjectContext) -> ()
@@ -101,6 +101,7 @@ extension CoreDataStack {
     func performBackgroundBatchOperation(_ batch: @escaping Batch) {
         
         backgroundContext.perform() {
+            
             batch(self.backgroundContext)
             
             // Save this to the parent context
@@ -111,7 +112,7 @@ extension CoreDataStack {
             }
         }
     }
-}*/
+}
 
 extension CoreDataStack {
     
@@ -142,6 +143,26 @@ extension CoreDataStack {
                         fatalError("Error while saving persisting context: \(error)")
                     }
                 }
+            }
+        }
+    }
+    
+    func autoSave(_ secondsDelayed: Int) {
+        
+        if secondsDelayed > 0 {
+            do {
+                try self.context.save()
+                print("Autosaving")
+            } catch {
+                print("Error while autosaving")
+            }
+            
+            let nanoSecondsDelayed = UInt64(secondsDelayed) * NSEC_PER_SEC
+            let time = DispatchTime.now() + Double(Int64(nanoSecondsDelayed)) / Double(NSEC_PER_SEC)
+            
+            
+            DispatchQueue.main.asyncAfter(deadline: time) {
+                self.autoSave(secondsDelayed)
             }
         }
     }
