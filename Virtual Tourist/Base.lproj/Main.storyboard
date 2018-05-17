@@ -157,6 +157,7 @@
                     <navigationItem key="navigationItem" id="Vfs-J3-kt5"/>
                     <connections>
                         <outlet property="collectionView" destination="QWE-R8-OoG" id="vBL-6C-37b"/>
+                        <outlet property="mapView" destination="pyQ-Dy-atp" id="gZy-gK-95C"/>
                         <outlet property="newCollectionButton" destination="C6X-2x-t9U" id="PMw-w9-ENm"/>
                     </connections>
                 </viewController>
