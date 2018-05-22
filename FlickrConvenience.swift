@@ -16,7 +16,7 @@ extension FlickrClient {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let coreDataStack = appDelegate.coreDataStack
         
-        performUIUpdatesOnMain {
+        DispatchQueue.main.async {
             FlickrClient.sharedInstance().taskForGETMethod(latitude: pin.latitude, longitude: pin.longitude) { (success, data, error) in
                 
                 if let data = data {
