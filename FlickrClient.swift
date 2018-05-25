@@ -23,7 +23,7 @@ class FlickrClient {
                                 Constants.FlickrParameterKeys.Latitude: latitude,
                                 Constants.FlickrParameterKeys.Longitude: longitude,
                                 Constants.FlickrParameterKeys.Format: Constants.FlickrParameterValues.JSONFormat,
-                                Constants.FlickrParameterKeys.NoJSONCallBack: Constants.FlickrParameterValues.JSONFormat,
+                                Constants.FlickrParameterKeys.NoJSONCallBack: Constants.FlickrParameterValues.DisableJSONCallback,
                                 Constants.FlickrParameterKeys.BBox: createBBox(latitude: latitude, longitude: longitude),
                                 Constants.FlickrParameterKeys.Extras: Constants.FlickrParameterValues.MediumURL,
                                 Constants.FlickrParameterKeys.PerPage: Constants.FlickrParameterValues.PerPageLimit,

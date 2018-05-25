@@ -46,6 +46,7 @@ extension FlickrClient {
             
             static let SearchMethod = "flickr.photos.search"
             static let JSONFormat = "json"
+            static let DisableJSONCallback = "1"
             static let MediumURL = "url_m"
             static let PerPageLimit = 21
             

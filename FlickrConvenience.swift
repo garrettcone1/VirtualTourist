@@ -11,7 +11,7 @@ import UIKit
 
 extension FlickrClient {
     
-    func getPhotosForPin(pin: Pin) {
+    public func getPhotosForPin(pin: Pin) {
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let coreDataStack = appDelegate.coreDataStack
