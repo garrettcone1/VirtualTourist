@@ -186,7 +186,7 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
                 
                 guard error == nil else {
                     
-                    print("An error occurred loading the photo from the URL: \(error)"); return
+                    print("An error occurred loading the photo from the URL: \(String(describing: error))"); return
                 }
             
                 photo.imageData = imageData as NSData?

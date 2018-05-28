@@ -52,13 +52,13 @@ class FlickrClient {
             
             // Check if there was an error
             guard error == nil else {
-                sendError(error: "There was an error with your request: \(error?.localizedDescription)")
+                sendError(error: "There was an error with your request: \(String(describing: error?.localizedDescription))")
                 return
             }
             
             // Check to see if we got a successful 2xx response
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
-                sendError(error: "Your request returned a status code other than 2xx!: \(response)")
+                sendError(error: "Your request returned a status code other than 2xx!: \(String(describing: response))")
                 return
             }
             
@@ -95,7 +95,7 @@ class FlickrClient {
         let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
             
             guard error == nil else {
-                completionHandler(nil, "Error downloading image: \(error)")
+                completionHandler(nil, "Error downloading image: \(String(describing: error))")
                 return
             }
             completionHandler(data, nil)
