@@ -227,11 +227,11 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
         
         return CGSize(width: widthPerItem, height: widthPerItem)
     }
-    /*
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return distanceForView
     }
-    */
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         
         return distanceForView.left
