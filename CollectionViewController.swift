@@ -41,13 +41,14 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.delegate = self
+        collectionView.dataSource = self
         
         collectionView.allowsMultipleSelection = true
         
         addPinToView()
         
         performUIUpdatesOnMain {
-            
             self.blankPhotoLabel = self.blankPhotosLabel()
         }
         
@@ -77,11 +78,12 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func fetchPhotos() {
-        
-        do {
-            try fetchedResultsController.performFetch()
-        } catch {
-            print("Unable to fetch Photos.")
+        performUIUpdatesOnMain {
+            do {
+                try self.fetchedResultsController.performFetch()
+            } catch {
+                print("Unable to fetch Photos.")
+            }
         }
     }
     
@@ -147,11 +149,12 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         if sections.numberOfObjects == 0 {
             
             performUIUpdatesOnMain {
-                
                 self.blankPhotoLabel.isHidden = false
             }
         } else {
+            performUIUpdatesOnMain {
                 self.blankPhotoLabel.isHidden = true
+            }
         }
         
         return sections.numberOfObjects
@@ -224,11 +227,11 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
         
         return CGSize(width: widthPerItem, height: widthPerItem)
     }
-    
+    /*
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return distanceForView
     }
-    
+    */
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         
         return distanceForView.left
@@ -252,22 +255,3 @@ extension CollectionViewController: NSFetchedResultsControllerDelegate {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

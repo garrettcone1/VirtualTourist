@@ -29,11 +29,11 @@ extension FlickrClient {
                         
                         pin.addToPhotos(photo)
                         
+                        
                         coreDataStack.save()
                         
                     }
                 }
-                
                 pin.isDownloaded = true
                 
             }
