@@ -128,7 +128,6 @@
                                         </constraints>
                                         <connections>
                                             <outlet property="activityIndicator" destination="9qD-84-zuE" id="UeW-6t-F6i"/>
-                                            <outlet property="photo" destination="v8B-ZJ-AMl" id="dfx-v5-ld3"/>
                                             <outlet property="photoImageView" destination="v8B-ZJ-AMl" id="L7C-Z4-bJT"/>
                                             <outlet property="placeHolderView" destination="9zw-mO-UqL" id="scQ-Rm-DpC"/>
                                         </connections>
@@ -165,9 +164,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="Vfs-J3-kt5"/>
                     <connections>
-                        <outlet property="collectionView" destination="QWE-R8-OoG" id="vBL-6C-37b"/>
                         <outlet property="mapView" destination="pyQ-Dy-atp" id="gZy-gK-95C"/>
                         <outlet property="newCollectionButton" destination="C6X-2x-t9U" id="PMw-w9-ENm"/>
+                        <outlet property="photoCollectionView" destination="QWE-R8-OoG" id="ilc-md-Uqr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WCI-Wv-hXV" userLabel="First Responder" sceneMemberID="firstResponder"/>

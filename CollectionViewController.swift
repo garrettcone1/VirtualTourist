@@ -16,7 +16,7 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     var pin: Pin!
     
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var photoCollectionView: UICollectionView!
     @IBOutlet weak var newCollectionButton: UIButton!
     
     fileprivate let numOfCellsPerRow: CGFloat = 3
@@ -41,10 +41,10 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        photoCollectionView.delegate = self
+        photoCollectionView.dataSource = self
         
-        collectionView.allowsMultipleSelection = true
+        photoCollectionView.allowsMultipleSelection = true
         
         addPinToView()
         
@@ -53,23 +53,23 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         }
         
         fetchPhotos()
-        
+        /*
         performUIUpdatesOnMain {
-            self.collectionView.reloadData()
-        }
+            self.photoCollectionView.reloadData()
+        }*/
         
-        collectionView.addObserver(self, forKeyPath: "contentSize", options: NSKeyValueObservingOptions.old, context: nil)
+        photoCollectionView.addObserver(self, forKeyPath: "contentSize", options: NSKeyValueObservingOptions.old, context: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        collectionView.removeObserver(self, forKeyPath: "contentSize")
+        photoCollectionView.removeObserver(self, forKeyPath: "contentSize")
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
-        if let observedObject = object as? UICollectionView, observedObject == collectionView {
+        if let observedObject = object as? UICollectionView, observedObject == photoCollectionView {
             // The collection view is done loading
             performUIUpdatesOnMain {
                 self.newCollectionButton.isEnabled = true
@@ -138,7 +138,7 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         
         performUIUpdatesOnMain {
             
-            self.collectionView.reloadData()
+            self.photoCollectionView.reloadData()
         }
     }
     
@@ -165,8 +165,8 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         let delegate = UIApplication.shared.delegate as! AppDelegate
         let coreDataStack = delegate.coreDataStack
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
-        
+        let cell = photoCollectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
+
         let photo = fetchedResultsController.object(at: indexPath)
         
         if let imageData = photo.imageData {
@@ -244,11 +244,11 @@ extension CollectionViewController: NSFetchedResultsControllerDelegate {
         
         switch type {
             
-        case .insert: collectionView.insertItems(at: [newIndexPath!])
+        case .insert: photoCollectionView.insertItems(at: [newIndexPath!])
             
-        case .delete: collectionView.deleteItems(at: [indexPath!])
+        case .delete: photoCollectionView.deleteItems(at: [indexPath!])
             
-        case .update: collectionView.reloadItems(at: [indexPath!])
+        case .update: photoCollectionView.reloadItems(at: [indexPath!])
             
         default:
             return
