@@ -29,21 +29,22 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         let delegate = UIApplication.shared.delegate as! AppDelegate
         let coreDataStack = delegate.coreDataStack
         
-        let fetchedRequest = NSFetchRequest<NSFetchRequestResult> (entityName: "Photo")
+        let fetchedRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Photo")
         fetchedRequest.sortDescriptors = []
         let predicate = NSPredicate(format: "pin = %@", self.pin)
         fetchedRequest.predicate = predicate
         
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchedRequest, managedObjectContext: coreDataStack.context, sectionNameKeyPath: nil, cacheName: nil)
         
+        fetchedResultsController.delegate = self
+        
+        photoCollectionView.reloadData()
+        
         return fetchedResultsController as! NSFetchedResultsController<Photo>
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        photoCollectionView.delegate = self
-        photoCollectionView.dataSource = self
-        
         photoCollectionView.allowsMultipleSelection = true
         
         addPinToView()
@@ -53,12 +54,14 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         }
         
         fetchPhotos()
-        /*
+        
         performUIUpdatesOnMain {
             self.photoCollectionView.reloadData()
-        }*/
+        }
         
         photoCollectionView.addObserver(self, forKeyPath: "contentSize", options: NSKeyValueObservingOptions.old, context: nil)
+        
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -144,19 +147,9 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        let sections = fetchedResultsController.sections![section]
-        
-        if sections.numberOfObjects == 0 {
-            
-            performUIUpdatesOnMain {
-                self.blankPhotoLabel.isHidden = false
-            }
-        } else {
-            performUIUpdatesOnMain {
-                self.blankPhotoLabel.isHidden = true
-            }
+        guard let sections = fetchedResultsController.sections?[section] else {
+            return 0
         }
-        
         return sections.numberOfObjects
     }
     
