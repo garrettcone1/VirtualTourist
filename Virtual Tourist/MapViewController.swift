@@ -167,8 +167,4 @@ extension MapViewController: MKMapViewDelegate {
         UserDefaults.standard.synchronize()
     }
     
-    @IBAction func editButton(_ sender: Any) {
-        
-    }
-    
 }

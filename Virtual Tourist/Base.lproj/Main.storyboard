@@ -36,13 +36,7 @@
                             <constraint firstAttribute="trailing" secondItem="cGp-SL-JWK" secondAttribute="trailing" id="wKx-RX-kDc"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Virtual Tourist" id="6lI-7E-qdD">
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="Odh-g2-feK">
-                            <connections>
-                                <action selector="editButton:" destination="BYZ-38-t0r" id="EfI-VA-ofR"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Virtual Tourist" id="6lI-7E-qdD"/>
                     <connections>
                         <outlet property="mapView" destination="cGp-SL-JWK" id="8Un-1F-9L5"/>
                     </connections>
