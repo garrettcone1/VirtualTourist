@@ -61,7 +61,6 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         
         photoCollectionView.addObserver(self, forKeyPath: "contentSize", options: NSKeyValueObservingOptions.old, context: nil)
         
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
